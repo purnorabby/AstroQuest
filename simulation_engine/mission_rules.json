@@ -1,0 +1,4 @@
+{
+  "resource_ranges": {"oxygen": [0, 100], "fuel": [0, 100], "battery": [0, 100]},
+  "scoring": {"safety": 40, "resource_management": 30, "decision_quality": 20, "mission_progress": 10}
+}

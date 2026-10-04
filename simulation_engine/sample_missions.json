@@ -1,0 +1,10 @@
+{
+  "moon": [
+    {"title":"Landing Guidance Alert","choices":[{"text":"Slow down and recalibrate","oxygen":-2,"fuel":-3,"battery":-2,"score":10},{"text":"Continue at current descent rate","oxygen":-1,"fuel":-1,"battery":-1,"score":4}]},
+    {"title":"Power Fluctuation","choices":[{"text":"Disable non-essential systems","battery":5,"score":10},{"text":"Keep all systems active","battery":-8,"score":2}]}
+  ],
+  "mars": [
+    {"title":"Dust Storm Warning","choices":[{"text":"Return to habitat and secure equipment","oxygen":-3,"fuel":-2,"battery":-2,"score":10},{"text":"Continue exploration","oxygen":-2,"fuel":-1,"battery":-6,"score":3}]},
+    {"title":"Communication Delay","choices":[{"text":"Follow the contingency plan","oxygen":-1,"fuel":-1,"battery":-1,"score":10},{"text":"Attempt repeated transmissions","oxygen":-1,"battery":-5,"score":3}]}
+  ]
+}
