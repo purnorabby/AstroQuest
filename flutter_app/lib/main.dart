@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 
 import 'mission/mission_models.dart';
 import 'mission/mission_simulator.dart';
 import 'screens/mission_readiness_page.dart';
+import 'three_d/astro_3d_preview_page.dart';
 
 void main() => runApp(const AstroQuestApp());
 
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
                 'MOON MISSION',
                 'Prepare your lunar exploration mission',
                 Icons.nightlight_round,
-                () => start(context),
+                    () => start(context),
               ),
               const SizedBox(height: 14),
               _missionButton(
@@ -99,7 +99,22 @@ class HomePage extends StatelessWidget {
                 'MARS MISSION',
                 'Prepare your Mars expedition',
                 Icons.public,
-                () => start(context),
+                    () => start(context),
+              ),
+              const SizedBox(height: 14),
+              _missionButton(
+                context,
+                '3D EXPLORATION LAB',
+                'Preview astronaut, Moon, Mars, rover and spacecraft',
+                Icons.view_in_ar,
+                    () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const Astro3DPreviewPage(),
+                    ),
+                  );
+                },
               ),
               const Spacer(),
               const Center(
@@ -120,12 +135,12 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _missionButton(
-    BuildContext context,
-    String title,
-    String subtitle,
-    IconData icon,
-    VoidCallback onTap,
-  ) {
+      BuildContext context,
+      String title,
+      String subtitle,
+      IconData icon,
+      VoidCallback onTap,
+      ) {
     return Card(
       child: InkWell(
         onTap: onTap,
@@ -194,9 +209,9 @@ class _MissionPageState extends State<MissionPage> {
     super.initState();
 
     events =
-        widget.initialMission.destination == MissionDestination.moon
-            ? moonEvents
-            : marsEvents;
+    widget.initialMission.destination == MissionDestination.moon
+        ? moonEvents
+        : marsEvents;
 
     final prepared = widget.initialMission;
 
@@ -372,12 +387,12 @@ class _MissionPageState extends State<MissionPage> {
           const SizedBox(height: 14),
           _choiceButton(
             event.choiceA,
-            () => choose(event, true),
+                () => choose(event, true),
           ),
           const SizedBox(height: 12),
           _choiceButton(
             event.choiceB,
-            () => choose(event, false),
+                () => choose(event, false),
           ),
           const SizedBox(height: 20),
           Center(
@@ -396,7 +411,7 @@ class _MissionPageState extends State<MissionPage> {
   Widget _resource(String label, double value) {
     final amount = value.round();
     final color =
-        amount <= 25 ? Colors.redAccent : accent;
+    amount <= 25 ? Colors.redAccent : accent;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -430,9 +445,9 @@ class _MissionPageState extends State<MissionPage> {
   }
 
   Widget _choiceButton(
-    String text,
-    VoidCallback onPressed,
-  ) {
+      String text,
+      VoidCallback onPressed,
+      ) {
     return FilledButton(
       onPressed: navigatingToReport ? null : onPressed,
       style: FilledButton.styleFrom(
@@ -462,24 +477,24 @@ class ResultPage extends StatelessWidget {
     final resources = mission.resources;
 
     final average = (
-      resources.oxygen +
-      resources.fuel +
-      resources.battery +
-      resources.food
+        resources.oxygen +
+            resources.fuel +
+            resources.battery +
+            resources.food
     ) / 4;
 
     final rawScore = mission.totalEvents > 0
         ? (mission.score / (mission.totalEvents * 10)) * 70 +
-            average * 0.30
+        average * 0.30
         : 0.0;
 
     final finalScore = rawScore.round().clamp(0, 100);
     final success = mission.status == MissionStatus.success;
 
     final destination =
-        mission.destination == MissionDestination.moon
-            ? 'MOON'
-            : 'MARS';
+    mission.destination == MissionDestination.moon
+        ? 'MOON'
+        : 'MARS';
 
     return Scaffold(
       appBar: AppBar(
@@ -556,7 +571,7 @@ class ResultPage extends StatelessWidget {
             onPressed: () {
               Navigator.popUntil(
                 context,
-                (route) => route.isFirst,
+                    (route) => route.isFirst,
               );
             },
             icon: const Icon(Icons.home),
@@ -589,7 +604,7 @@ const moonEvents = <MissionEvent>[
     id: 'moon-landing',
     title: 'Landing Guidance Alert',
     description:
-        'A navigation warning appears during lunar descent.',
+    'A navigation warning appears during lunar descent.',
     choiceA: 'Slow down and recalibrate navigation',
     choiceB: 'Continue at current descent rate',
     effectA: MissionResources(
@@ -611,7 +626,7 @@ const moonEvents = <MissionEvent>[
     id: 'moon-power',
     title: 'Power Fluctuation',
     description:
-        'A non-essential system is consuming extra battery power.',
+    'A non-essential system is consuming extra battery power.',
     choiceA: 'Disable non-essential systems',
     choiceB: 'Keep all systems active',
     effectA: MissionResources(
@@ -629,7 +644,7 @@ const moonEvents = <MissionEvent>[
     id: 'moon-route',
     title: 'Surface Route',
     description:
-        'Choose a route to the lunar exploration zone.',
+    'Choose a route to the lunar exploration zone.',
     choiceA: 'Take the safer mapped route',
     choiceB: 'Take the shorter unknown route',
     effectA: MissionResources(
@@ -652,7 +667,7 @@ const marsEvents = <MissionEvent>[
     id: 'mars-storm',
     title: 'Dust Storm Warning',
     description:
-        'A regional dust storm is approaching the exploration zone.',
+    'A regional dust storm is approaching the exploration zone.',
     choiceA: 'Return to habitat and secure equipment',
     choiceB: 'Continue exploration',
     effectA: MissionResources(
@@ -674,7 +689,7 @@ const marsEvents = <MissionEvent>[
     id: 'mars-communication',
     title: 'Communication Delay',
     description:
-        'Direct communication with mission control is temporarily unavailable.',
+    'Direct communication with mission control is temporarily unavailable.',
     choiceA: 'Follow the pre-approved contingency plan',
     choiceB: 'Attempt repeated transmissions',
     effectA: MissionResources(
@@ -696,7 +711,7 @@ const marsEvents = <MissionEvent>[
     id: 'mars-sample',
     title: 'Sample Collection',
     description:
-        'A scientifically interesting surface sample is within reach.',
+    'A scientifically interesting surface sample is within reach.',
     choiceA: 'Collect the sample using the planned procedure',
     choiceB: 'Collect it quickly without full procedure',
     effectA: MissionResources(
