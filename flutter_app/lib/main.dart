@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'mission/mission_models.dart';
 import 'mission/mission_simulator.dart';
 import 'screens/mission_readiness_page.dart';
-import 'three_d/astro_3d_preview_page.dart';
+import 'astro_3d_preview_page.dart';
 
 void main() => runApp(const AstroQuestApp());
 
@@ -730,3 +730,4 @@ const marsEvents = <MissionEvent>[
     scoreB: 4,
   ),
 ];
+
