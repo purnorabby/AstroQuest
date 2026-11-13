@@ -92,7 +92,11 @@ class _Astro3DViewerState extends State<Astro3DViewer> {
                     ),
                     boxShadow: [
                       BoxShadow(
+<<<<<<< HEAD
                         color: widget.accentColor.withValues(alpha: .25),
+=======
+                        color: widget.accentColor.withOpacity(.25),
+>>>>>>> 3f88b82 (Add Flutter web support and fix compatibility)
                         blurRadius: 45,
                         spreadRadius: 12,
                       ),
